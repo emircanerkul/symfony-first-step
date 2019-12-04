@@ -11,30 +11,40 @@
 			{% endblock %}
 		</title>
 		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
-			<header>
-				<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-					<div class="container">
-						<a class="navbar-brand" href="{{ path('home') }}">Ana Sayfa</a>
-						<div class="collapse navbar-collapse">
-							<ul class="navbar-nav mr-auto">
-								<li class="nav-item">
-									<a class="nav-link" href="{{ path('hello') }}">Hello Sayfası</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="{{ path('contact') }}">Contact Sayfası</a>
-								</li>
-							</ul>
-						</div>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+		<style>
+			.main {
+				padding: 40px 0
+			}
+		</style>
+
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+				<div class="container">
+					<a class="navbar-brand" href="{{ path('home') }}">Ana Sayfa</a>
+					<div class="collapse navbar-collapse">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('hello') }}">Hello Sayfası</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('contact') }}">Contact Sayfası</a>
+							</li>
+						</ul>
 					</div>
-				</nav>
-			</header>
+				</div>
+			</nav>
+		</header>
 
-			<main role="main" class="container main"> {% block body %}{% endblock %}
-				</main>
+		<main role="main" class="container main">
+			{% include 'flash_messages.html.twig' %}
+			{% block body %}{% endblock %}
+		</main>
 
-				{% block javascripts %}{% endblock %}
-			</body>
-		</html>
+		{% block javascripts %}{% endblock %}
+	</body>
+</html>
