@@ -1,26 +1,35 @@
 {% extends "base.html.twig" %}
-{% block title %}Articles{% endblock %}
+{% block title %}Articles
+{% endblock %}
 {% block body %}
-{% if articles %}
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Article Title</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {%  for article in articles %}
-          <tr>
-            <td>{{ article }}</td>
+	{% if articles %}
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Article Title</th>
+					<th>Actions</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{%  for article in articles %}
+					<tr>
+						<td width="90%">{{ article.title }}</td>
+						<td>
+							<a href="{{path('article_show',{"id": article.id})}}" class="btn btn-info">Show</a>
+						</td>
             <td>
-              <a href="/article/1" class="btn btn-dark">Show</a>
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>Articles not available</p>
-  {% endif %}
+							<a href="{{path('article_update',{"id": article.id})}}" class="btn btn-warning btn-warning">Edit</a>
+						</td>
+            <td>
+							<a href="{{path('article_delete',{"id": article.id})}}" class="btn btn-danger btn-error">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Articles not available</p>
+	{% endif %}
 {% endblock %}
