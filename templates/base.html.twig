@@ -17,6 +17,11 @@
 			.main {
 				padding: 40px 0
 			}
+
+			.btn-create {
+				margin-bottom: 20px;
+				float: right;
+			}
 		</style>
 
 		{% block stylesheets %}{% endblock %}
@@ -32,13 +37,10 @@
 								<a class="nav-link" href="{{ path('hello') }}">Say Hello</a>
 							</li>
 							<li class="nav-item">
+								<a class="nav-link" href="{{ path('article_list') }}">Articles</a>
+							</li>
+							<li class="nav-item">
 								<a class="nav-link" href="{{ path('contact') }}">Contact US</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('article_list') }}">Our Articles</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ path('article_create') }}">Create Article</a>
 							</li>
 						</ul>
 					</div>

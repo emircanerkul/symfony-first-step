@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
+use App\Form\CategoryType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -52,9 +56,11 @@ class ArticleController extends AbstractController
       ->add('body', TextareaType::class, array(
         'required' => false,
         'attr' => array('class' => 'form-control')
-      ))
+      ))->add('category', EntityType::class, [
+        'class' => Category::class
+      ])
       ->add('save', SubmitType::class, array(
-        'label' => 'Create',
+        'label' => 'Update',
         'attr' => array('class' => 'btn btn-primary mt-3')
       ))
       ->getForm();
@@ -87,7 +93,9 @@ class ArticleController extends AbstractController
       ->add('body', TextareaType::class, array(
         'required' => false,
         'attr' => array('class' => 'form-control')
-      ))
+      ))->add('category', EntityType::class, [
+        'class' => Category::class
+      ])
       ->add('save', SubmitType::class, array(
         'label' => 'Create',
         'attr' => array('class' => 'btn btn-primary mt-3')

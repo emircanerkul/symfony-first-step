@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+{% block title %}Categories
+{% endblock %}
+{% block body %}
+	<a class="btn btn-primary btn-create" href="{{ path('category_create') }}">Create Category</a>
+	{% if categories %}
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Category Title</th>
+					<th>Actions</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{%  for category in categories %}
+					<tr>
+						<td width="90%">{{ category.title }}</td>
+						<td>
+							<a href="{{path('category_update',{"id": category.id})}}" class="btn btn-warning btn-warning">Edit</a>
+						</td>
+						<td>
+							<a href="{{path('category_delete',{"id": category.id})}}" class="btn btn-danger btn-error">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Categories not available</p>
+	{% endif %}
+{% endblock %}
