@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block title%}Say Hi!{% endblock %}
+
 {% block body %}
-	<div>
-		<h1>Hi, Guys;</h1>
-		<p class="lead">Something about this page</p>
+	<div class="container mt-4">
+		<h1>Say Hi</h1>
+
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end (form) }}
 	</div>
 {% endblock %}

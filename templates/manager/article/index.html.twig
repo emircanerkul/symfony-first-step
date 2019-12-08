@@ -1,0 +1,41 @@
+{% extends "manager/base.html.twig" %}
+{% block title %}Articles
+{% endblock %}
+{% block body %}
+
+	<a class="btn btn-success btn-create" href="{{ path('manager_article_create') }}">Create Article</a>
+
+	{% if articles %}
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Article ID</th>
+					<th>Article Title</th>
+					<th>Article Category</th>
+					<th>Actions</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{%  for article in articles %}
+					<tr>
+						<td width="10%">#{{ article.id }}</td>
+						<td width="30%">{{ article.title }}</td>
+						<td width="50%">{{ article.category }}</td>
+						{# <td>
+																			<a href="{{path('manager_article_show',{"id": article.id})}}" class="btn btn-info">Show</a>
+																		</td> #}
+						<td>
+							<a href="{{path('manager_article_update',{"id": article.id})}}" class="btn btn-warning btn-warning">Edit</a>
+						</td>
+						<td>
+							<a href="{{path('manager_article_delete',{"id": article.id})}}" class="btn btn-danger btn-error">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<p>Articles not available</p>
+	{% endif %}
+{% endblock %}

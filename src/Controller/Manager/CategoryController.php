@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Manager;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
@@ -13,19 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category", name="category_list")
+     * @Route("/manager/category", name="manager_category_list")
      */
     public function list()
     {
         $dm = $this->getDoctrine()->getManager();
 
-        return $this->render('category/index.html.twig', [
+        return $this->render('manager/category/index.html.twig', [
             "categories" => $dm->getRepository(Category::class)->findAll()
         ]);
     }
 
     /**
-     * @Route("/category/new", name="category_create")
+     * @Route("/manager/category/new", name="manager_category_create")
      */
     public function create(Request $request)
     {
@@ -37,16 +37,16 @@ class CategoryController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();
-            return $this->redirectToRoute('category_list');
+            return $this->redirectToRoute('manager_category_list');
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('manager/category/create.html.twig', [
             "form" => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/category/update/{id}", name="category_update")
+     * @Route("/manager/category/update/{id}", name="manager_category_update")
      * Method ({"GET", "POST"})
      */
     public function update(Request $request, $id)
@@ -60,16 +60,16 @@ class CategoryController extends AbstractController
             $category = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-            return $this->redirectToRoute('category_list');
+            return $this->redirectToRoute('manager_category_list');
         }
 
-        return $this->render('category/new.html.twig', [
+        return $this->render('manager/category/update.html.twig', [
             "form" => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/category/delete/{id}", name="category_delete")
+     * @Route("/manager/category/delete/{id}", name="manager_category_delete")
      * Method: {"GET"}
      */
     public function delete($id)
@@ -82,11 +82,11 @@ class CategoryController extends AbstractController
         } else {
             $dm->remove($category);
             $dm->flush();
-            return $this->redirectToRoute('category_list');
+            return $this->redirectToRoute('manager_category_list');
         }
 
 
-        return $this->render('category/index.html.twig', [
+        return $this->render('manager/category/index.html.twig', [
             "categories" => $dm->getRepository(Category::class)->findAll()
         ]);
     }

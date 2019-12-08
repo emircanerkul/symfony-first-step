@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="tr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>
+			{% block title %}Manager
+			{% endblock %}
+		</title>
+
+		{{ encore_entry_link_tags('manager') }}
+
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+				<div class="container">
+					<a class="navbar-brand" href="{{ path('manager') }}">Manager</a>
+					<div class="collapse navbar-collapse">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('manager_article_list') }}">Articles</a>
+							</li>
+
+							<li class="nav-item right">
+								<a class="nav-link" href="{{ path('manager_category_list') }}">Categories</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main role="main" class="main">
+			{% include 'flash_messages.html.twig' %}
+			{% block body %}{% endblock %}
+
+		</main>
+
+		<footer>
+			<p class="float-right">
+				<a href="{{path("home")}}">Go back to home</a>
+			</p>
+			<p>© 2017-2019 Company, Inc.
+			</p>
+		</footer>
+
+		{{ encore_entry_script_tags('manager') }}
+		{% block javascripts %}{% endblock %}
+	</body>
+</html>
