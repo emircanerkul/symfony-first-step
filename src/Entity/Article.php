@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -31,6 +32,11 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $main_image;
 
     public function getId(): ?int
     {
@@ -71,5 +77,33 @@ class Article
         $this->category = $category;
 
         return $this;
+    }
+
+    public function getMainImage(): ?string
+    {
+        return $this->main_image;
+    }
+
+    public function setMainImage(string $main_image): self
+    {
+        $this->main_image = $main_image;
+
+        return $this;
+    }
+
+    public function __call($name, $args)
+    {
+        $property = lcfirst(substr($name, 3));
+        if ('get' === substr($name, 0, 3)) {
+            return isset($this->children[$property])
+                ? $this->children[$property]
+                : null;
+        } elseif ('set' === substr($name, 0, 3)) {
+            $value = 1 == count($args) ? $args[0] : null;
+            $this->children[$property] = $value;
+        }
+        elseif($name == "main_image"){
+            return $this->getMainImage();
+        }
     }
 }

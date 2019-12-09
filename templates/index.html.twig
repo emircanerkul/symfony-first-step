@@ -91,18 +91,14 @@
 		<hr class="featurette-divider">
 		{% for article in articles %}
 			<div class="row featurette">
-				<div class="col-md-7{% if loop.index % 2 == 0 %} order-md-2{% endif %}">
+				<div class="col-md-7{% if loop.index % 2 == 0 %} order-md-2 overflow-hidden{% endif %}">
 					<h2 class="featurette-heading">{{article.title}}
 						<span class="text-muted small">#{{article.category}}</span>
 					</h2>
 					<p class="lead">{{article.body}}</p>
 				</div>
-				<div class="col-md-5{% if loop.index % 2 == 0 %} order-md-1{% endif %}">
-					<svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveaspectratio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
-						<title>{{article.title}}</title>
-						<rect width="100%" height="100%" fill="#eee"></rect>
-						<text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-					</svg>
+				<div class="col-md-5{% if loop.index % 2 == 0 %} order-md-1 overflow-hidden{% endif %}">
+					<img class="rounded" style="height:500px;width:500px" src="{{ asset('upload/' ~ article.main_image) }}" alt="{{article.title}}">
 				</div>
 			</div>
 
