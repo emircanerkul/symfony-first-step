@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\HelloType;
+use App\Service\Currency;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ class HelloController extends AbstractController
      * @Route("/say_hi", name="hello")
      * Method: {"GET","POST"}
      */
-    public function index(Request $request)
+    public function index(Request $request, Currency $currency)
     {
         $form = $this->createForm(HelloType::class);
 
@@ -29,7 +30,8 @@ class HelloController extends AbstractController
 
         return $this->render('hello/index.html.twig', [
             'controller_name' => 'HelloController',
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            'currency_usd' => $currency->getUSD()
         ]);
     }
 }

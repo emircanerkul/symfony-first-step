@@ -7,7 +7,8 @@
 		<meta name="author" content="Emircan ERKUL">
 
 		<title>
-			{% block title %}Symfony First Step{% endblock %}
+			{% block title %}Symfony First Step
+			{% endblock %}
 		</title>
 
 		{{ encore_entry_link_tags('app') }}
@@ -30,6 +31,12 @@
 
 							<li class="nav-item right">
 								<a class="nav-link" href="{{ path('manager') }}">Manager</a>
+							</li>
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right currency">
+							<li>
+								1 USD = {{ currency_usd }} TRY
 							</li>
 						</ul>
 					</div>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\ContactType;
+use App\Service\Currency;
 use Swift_Mailer;
 use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request, Swift_Mailer $mailer)
+    public function contact(Request $request, Swift_Mailer $mailer, Currency $currency)
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
@@ -36,6 +37,7 @@ class ContactController extends AbstractController
 
         return $this->render('contact/index.html.twig', [
             'our_form' => $form->createView(),
+            'currency_usd' => $currency->getUSD()
         ]);
     }
 }
