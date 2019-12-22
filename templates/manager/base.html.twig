@@ -21,6 +21,7 @@
 				<div class="container">
 					<a class="navbar-brand" href="{{ path('manager') }}">Manager</a>
 					<div class="collapse navbar-collapse">
+						{% if is_granted('ROLE_ADMIN') %}
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('manager_article_list') }}">Articles</a>
@@ -30,6 +31,11 @@
 								<a class="nav-link" href="{{ path('manager_category_list') }}">Categories</a>
 							</li>
 						</ul>
+
+						<ul class="nav navbar-nav navbar-right">
+							<a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
+						</ul>
+						{% endif %}
 					</div>
 				</div>
 			</nav>
