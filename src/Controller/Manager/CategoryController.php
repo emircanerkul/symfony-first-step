@@ -4,7 +4,9 @@ namespace App\Controller\Manager;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Utils\Slugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -27,12 +29,22 @@ class CategoryController extends AbstractController
     /**
      * @Route("/manager/category/new", name="manager_category_create")
      */
-    public function create(Request $request)
+    public function create(Request $request, Slugger $slugger)
     {
         $form = $this->createForm(CategoryType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($request->get("title") !== null) {
+            $category = new Category();
+            $category->setTitle($request->get("title"));
+            $category->setSlug($slugger->slugify($request->get("title")));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return new JsonResponse($category->getId());
+        } else if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);

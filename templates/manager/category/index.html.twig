@@ -2,7 +2,15 @@
 {% block title %}Categories
 {% endblock %}
 {% block body %}
-	<a class="btn btn-success btn-create" href="{{ path('manager_category_create') }}">Create Category</a>
+
+	<div class="row float-right">
+		<div class="input-group mb-2">
+			<input id="category-input" type="text" class="form-control" placeholder="Category Title">
+			<div class="input-group-append">
+				<button id="category-create" class="btn btn-success btn-create" type="button">Create Category</button>
+			</div>
+		</div>
+	</div>
 	{% if categories %}
 
 		<table class="table table-striped">
@@ -32,4 +40,25 @@
 	{% else %}
 		<p>Categories not available</p>
 	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+	$(document).ready(function () {
+		$("#category-create").click(()=>{
+			const category_title = $("#category-input").val();
+
+			if(category_title.length < 3)
+				window.location = "{{ path('manager_category_create') }}";
+			else {
+				$.post("{{ path('manager_category_create') }}", {title: category_title}, function(response, status) {
+					//your callback here
+					if(status == "success")
+						window.location = "{{ path('manager_category_list') }}";
+					else alert("ERROR")
+				}, 'JSON');
+			}
+		})
+	});
+</script>
 {% endblock %}
