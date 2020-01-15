@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container mt-4">
+        <h1>Forbidden Page</h1>
+
+        <p>
+        The requested page couldn't be allowed. Checkout for any URL
+            misspelling or <a href="{{ path('home') }}">return to the homepage</a>.
+        </p>
+	</div>
+{% endblock %}
+{% block footer %}{% endblock %}

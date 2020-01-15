@@ -50,6 +50,10 @@ The first steps were always the hardest. We have to need purpose for this step. 
 -  [x] Shorthand category creator developed.
 -  [x] Jquery ajax used.
 
+### 9. Step
+
+-  [x] Custom error pages configured.
+
 ### Spacial Thanks For
  - [Symfony Contributors](https://github.com/symfony/symfony) for [clear documentation](https://symfony.com/doc/current/index.html)
  - [Hatice Ergün](https://github.com/hadeyici) for awesome first step [tutorial](https://medium.com/@hadeyici/symfony-4-giri%C5%9F-4a4de52a952)

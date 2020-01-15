@@ -33,11 +33,13 @@
 								<a class="nav-link" href="{{ path('manager') }}">Manager</a>
 							</li>
 						</ul>
+						{% if currency_usd is defined %}
 						<ul class="nav navbar-nav navbar-right currency">
 							<li>
 								1 USD = {{ currency_usd }} TRY
 							</li>
 						</ul>
+						{% endif %}
 					</div>
 				</div>
 			</nav>
@@ -46,7 +48,7 @@
 		<main role="main">
 			{% include 'flash_messages.html.twig' %}
 			{% block body %}{% endblock %}
-
+			{% block footer %}
 			<footer class="container">
 				<p class="float-right">
 					<a href="#">Back to top</a>
@@ -54,6 +56,7 @@
 				<p>© 2017-2019 Company, Inc.
 				</p>
 			</footer>
+			{% endblock %}
 		</main>
 		{{ encore_entry_script_tags('app') }}
 		{% block javascripts %}{% endblock %}
